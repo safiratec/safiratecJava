@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fabrica.software.entities.enums.UserAcess;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -27,6 +28,8 @@ public class Usuario implements Serializable {
 	private String email;
 	private String password;
 	
+	private Integer userAcess;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="usuario")
 	private List<Pedido> pedidos = new ArrayList<>();
@@ -35,12 +38,13 @@ public class Usuario implements Serializable {
 
 	}
 
-	public Usuario(Long id, String nome, String email, String password) {
+	public Usuario(Long id, String nome, String email, String password, UserAcess userAcess) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.password = password;
+		setUserAcess(userAcess);
 	}
 
 	public Long getId() {
@@ -83,6 +87,19 @@ public class Usuario implements Serializable {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
+	public UserAcess getUserAcess() {
+		return UserAcess.valueOf(userAcess);
+	}
+
+	public void setUserAcess(UserAcess userAcess) {
+		if(userAcess!=null) {
+			this.userAcess= userAcess.getUserCode();
+		}
+		else {
+			throw new IllegalArgumentException("Null argument");
+		}
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -95,5 +112,7 @@ public class Usuario implements Serializable {
 		Usuario other = (Usuario) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 
 }

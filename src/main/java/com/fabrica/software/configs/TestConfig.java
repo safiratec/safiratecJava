@@ -15,6 +15,7 @@ import com.fabrica.software.entities.Pedido;
 import com.fabrica.software.entities.Produto;
 import com.fabrica.software.entities.Usuario;
 import com.fabrica.software.entities.enums.PedidoStatus;
+import com.fabrica.software.entities.enums.UserAcess;
 import com.fabrica.software.repositories.CategoriaRepository;
 import com.fabrica.software.repositories.ItensPedidoRepository;
 import com.fabrica.software.repositories.PedidoRepository;
@@ -66,8 +67,8 @@ public class TestConfig implements CommandLineRunner{
 		
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
-		Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "123456");
-		Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "123456");
+		Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "123456", UserAcess.VENDEDOR);
+		Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "123456", UserAcess.COMPRADOR);
 		usuarioRepository.saveAll(Arrays.asList(u1,u2));
 		Pedido o1 = new Pedido(null, Instant.parse("2019-06-20T19:53:07Z"),PedidoStatus.PAGO, u1);
 		Pedido o2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"),PedidoStatus.CANCELADO, u2);

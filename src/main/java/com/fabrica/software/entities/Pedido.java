@@ -80,16 +80,16 @@ public class Pedido implements Serializable{
 
 	public void setPedidoStatus(PedidoStatus pedidoStatus) {
 		if(pedidoStatus!=null) {
-			this.pedidoStatus = pedidoStatus.getCode();
+			this.pedidoStatus = pedidoStatus.getPedidoStatusCode();
 		}
 		
 	}
 
-	public Usuario getusuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setusuario(Usuario usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 	

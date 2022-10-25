@@ -14,13 +14,13 @@ public enum PedidoStatus {
 		this.code=code;
 	}
 	
-	public int getCode() {
+	public int getPedidoStatusCode() {
 		return code;
 	}
 	
 	public static PedidoStatus valueOf(int code) {
 		for(PedidoStatus value: PedidoStatus.values()) {
-			if(value.getCode()==code) {
+			if(value.getPedidoStatusCode()==code) {
 				return value;
 			}
 		}
