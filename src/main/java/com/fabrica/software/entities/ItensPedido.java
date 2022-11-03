@@ -6,6 +6,7 @@ import java.util.Objects;
 import com.fabrica.software.entities.pk.ItemPedidoPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -18,19 +19,22 @@ public class ItensPedido implements Serializable {
 	
 	@EmbeddedId
 	private ItemPedidoPK id= new ItemPedidoPK();
-
+	
+	@Column(name = "quantidade", nullable=false)
 	private int quantidade;
-	private double preco;
+	
+	@Column(name = "preco_final", nullable=false)
+	private double precoFinal;
 
 	public ItensPedido() {
 
 	}
 
-	public ItensPedido(Pedido pedido, Produto produto, int quantidade, double preco) {
+	public ItensPedido(Pedido pedido, Produto produto, int quantidade, double precoFinal) {
 		id.setPedido(pedido);
 		id.setProduto(produto);
 		this.quantidade = quantidade;
-		this.preco = preco;
+		this.precoFinal = precoFinal;
 	}
 	
 	@JsonIgnore
@@ -59,16 +63,16 @@ public class ItensPedido implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public double getpreco() {
-		return preco;
+	public double getprecoFinal() {
+		return precoFinal;
 	}
 
-	public void setpreco(double preco) {
-		this.preco = preco;
+	public void setprecoFinal(double precoFinal) {
+		this.precoFinal = precoFinal;
 	}
 	
 	public Double getTotal() {
-		return preco*quantidade;
+		return precoFinal*quantidade;
 	}
 
 	@Override

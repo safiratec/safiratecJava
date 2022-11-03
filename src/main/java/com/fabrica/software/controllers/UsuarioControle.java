@@ -22,8 +22,13 @@ import com.fabrica.software.services.UsuarioService;
 @RequestMapping(value="/usuarios")
 public class UsuarioControle {
 	
+	
+	private final UsuarioService service;
+	
 	@Autowired
-	private UsuarioService service;
+	public UsuarioControle(UsuarioService service) {
+		this.service=service;
+	}
 	
 	@GetMapping
 	public ResponseEntity<List<Usuario>> findAll(){

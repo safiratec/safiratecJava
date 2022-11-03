@@ -2,11 +2,11 @@ package com.fabrica.software.entities.enums;
 
 public enum PedidoStatus {
 	
-	AGUARDADNDO_PAGAMENTO(1),
-	PAGO(2),
-	ENVIADO(3),
-	TRANSITANDO(4),
-	CANCELADO(5);
+	AGUARDADNDO_PAGAMENTO(0),
+	PAGO(1),
+	ENVIADO(2),
+	TRANSITANDO(3),
+	CANCELADO(4);
 	
 	private int code;
 	

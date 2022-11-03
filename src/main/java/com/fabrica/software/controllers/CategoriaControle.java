@@ -22,13 +22,17 @@ import com.fabrica.software.services.CategoriaService;
 @RequestMapping(value="/categorias")
 public class CategoriaControle {
 	
+	private final CategoriaService service;
+	
 	@Autowired
-	private CategoriaService service;
+	public CategoriaControle(CategoriaService service) {
+		this.service=service;
+	}
 	
 	@GetMapping
 	public ResponseEntity<List<Categoria>> findAll(){
 		List<Categoria> list= service.findAll();
-		return ResponseEntity.ok().body(list);				
+		return ResponseEntity.ok().body(list);			
 				
 	}
 	

@@ -16,8 +16,14 @@ import com.fabrica.software.services.exceptions.ResourceNotFoundException;
 @Service
 public class PedidoService {
 	
+	
+	private final PedidoRepository repository;
+	
 	@Autowired
-	private PedidoRepository repository;
+	public PedidoService(PedidoRepository repository) {
+		this.repository=repository;
+	}
+	
 	
 	public List<Pedido> findAll(){
 		return repository.findAll();
@@ -54,8 +60,7 @@ public class PedidoService {
 		entidade.setMomento(obj.getMomento());
 		entidade.setPagamento(obj.getPagamento());
 		entidade.setPedidoStatus(obj.getPedidoStatus());
-		entidade.setUsuario(obj.getUsuario()); 
-				
+		entidade.setUsuario(obj.getUsuario()); 				
 				
 	}
 

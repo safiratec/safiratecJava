@@ -23,8 +23,13 @@ import com.fabrica.software.services.ProdutoService;
 @RequestMapping(value="/produtos")
 public class ProdutoControle {
 	
+	
+	private final ProdutoService service;
+	
 	@Autowired
-	private ProdutoService service;
+	public ProdutoControle(ProdutoService service) {
+		this.service=service;
+	}
 	
 	@GetMapping
 	public ResponseEntity<List<Produto>> findAll(){

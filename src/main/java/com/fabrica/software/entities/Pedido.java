@@ -10,6 +10,7 @@ import com.fabrica.software.entities.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,18 +29,21 @@ public class Pedido implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "pedido_id")
 	private Long id;
 
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern= "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone= "GMT")		
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern= "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone= "GMT")	
+	@Column(name = "pedido_instante", nullable=false, unique=true)
 	private Instant momento;
 	
 	@ManyToOne
-	@JoinColumn(name="usuario_id")
+	@JoinColumn(name="usuario_id")	
 	private Usuario usuario;
 	
 	@OneToMany(mappedBy = "id.pedido")	
 	private Set<ItensPedido> items = new HashSet<>();
 	
+	@Column(name = "pedido_status", nullable=false)
 	private Integer pedidoStatus;
 	
 	@OneToOne (mappedBy = "pedido", cascade = CascadeType.ALL)

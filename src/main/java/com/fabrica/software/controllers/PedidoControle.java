@@ -22,8 +22,12 @@ import com.fabrica.software.services.PedidoService;
 @RequestMapping(value="/pedidos")
 public class PedidoControle {
 	
+	private final PedidoService service;
+	
 	@Autowired
-	private PedidoService service;
+	public PedidoControle(PedidoService service) {
+		this.service=service;
+	}
 	
 	@GetMapping
 	public ResponseEntity<List<Pedido>> findAll(){

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,11 +26,24 @@ public class Produto implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "produto_id")
 	private Long id;
+	
+	@Column(name = "produto_nome", nullable=false)
 	private String name;
+	
+	@Column(name = "produto_descricao")
 	private String descricao;
+	
+	@Column(name = "produto_preco", nullable=false)
 	private double preco;
+	
+	@Column(name = "produto_imagem")
 	private String imgUrl;
+	
+	
+	@Column(name = "produto_estoque", nullable=false)
+	private int estoque;
 	
 	//Set garante que um produto tenha apenas uma ocorrência de categoria
 	@ManyToMany
@@ -43,7 +57,7 @@ public class Produto implements Serializable{
 		
 	}
 
-	public Produto(Long id, String name, String descricao, double preco, String imgUrl) {
+	public Produto(Long id, String name, String descricao, double preco, String imgUrl, int estoque) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -105,6 +119,15 @@ public class Produto implements Serializable{
 		return set;
 	}
 
+	public int getQuantidade() {
+		return estoque;
+	}
+
+	public void setQuantidade(int estoque) {
+		this.estoque = estoque;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -121,6 +144,8 @@ public class Produto implements Serializable{
 		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 	
 	
 	

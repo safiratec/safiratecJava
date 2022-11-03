@@ -16,8 +16,13 @@ import com.fabrica.software.services.exceptions.ResourceNotFoundException;
 @Service
 public class ProdutoService {
 	
+	
+	private final ProdutoRepository repository;
+	
 	@Autowired
-	private ProdutoRepository repository;
+	public ProdutoService(ProdutoRepository repository) {
+		this.repository=repository;
+	}
 	
 	public List<Produto> findAll(){
 		return repository.findAll();
